@@ -20,7 +20,7 @@ def index():
                 "url": data["slug"],
                 "date": data["date"],
                 "postno": data["postno"],
-                "tags":data["tags"]
+                "tags": data["tags"]
             }
             posts_list.append(post)
             posts_list = sorted(
@@ -48,8 +48,21 @@ def about():
 
 
 @app.route("/tag/<tag>", methods=["GET"])
-def tag_posts():
-    pass
+def tag_posts(tag):
+    post_list = []
+    for item in os.listdir('static/posts'):
+        with open('./static/posts/'+item, encoding='utf-8') as f:
+            data = frontmatter.load(f)
+            if tag in data["tags"]:
+                post = {
+                    "title": data["title"],
+                    "url": data["slug"],
+                    "date": data["date"],
+                    "postno": data["postno"],
+                    "tags": data["tags"]
+                }
+                post_list.append(post)
+    return render_template('index.html', data=post_list)
 
 
 if __name__ == "__main__":
