@@ -37,7 +37,7 @@
   </head>
   <body>
     <div class="container my-5">
-      <h3 class="text-center">
+      <h3 class="text-center display-6">
         <a class="nav-link" href="/">Utkarsh Sharma</a>
       </h3>
       <ul class="nav justify-content-center">
@@ -58,6 +58,9 @@
             <h5 class="mb-1">{{item.title}}</h5>
             <small class="text-muted">{{item.date}}</small>
           </div>
+          {% for tag in item.tags %}
+          <span class="badge bg-secondary">{{tag}}</span>
+          {% endfor %}
         </a>
         {% endfor %}
       </ul>

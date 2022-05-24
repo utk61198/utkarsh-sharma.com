@@ -19,7 +19,8 @@ def index():
                 "title": data["title"],
                 "url": data["slug"],
                 "date": data["date"],
-                "postno": data["postno"]
+                "postno": data["postno"],
+                "tags":data["tags"]
             }
             posts_list.append(post)
             posts_list = sorted(
@@ -44,6 +45,11 @@ def about():
         fm_data = frontmatter.load(f)
         about = markdown(fm_data.content)
     return render_template('about.html', about=about)
+
+
+@app.route("/tag/<tag>", methods=["GET"])
+def tag_posts():
+    pass
 
 
 if __name__ == "__main__":
