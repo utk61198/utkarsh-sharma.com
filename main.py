@@ -1,4 +1,3 @@
-from pickle import TRUE
 from flask import Flask, render_template
 import frontmatter
 import os
