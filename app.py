@@ -7,7 +7,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-
 @app.route("/", methods=["GET"])
 def index():
     posts_list = []
@@ -64,5 +63,3 @@ def tag_posts(tag):
     return render_template('index.html', data=post_list)
 
 
-if __name__ == "__main__":
-    app.run()

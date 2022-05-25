@@ -58,14 +58,9 @@
             <h5 class="mb-1">{{item.title}}</h5>
             <small class="text-muted">{{item.date}}</small>
           </div>
-          <div class="flex-row">
-            {% for tag in item.tags %}
-            <a href="/tag/{{tag}}">
-              <span class="badge bg-secondary">{{tag}}</span></a
-            >
-
-            {% endfor %}
-          </div>
+          {% for tag in item.tags %}
+          <span class="badge bg-secondary">{{tag}}</span>
+          {% endfor %}
         </a>
         {% endfor %}
       </ul>
