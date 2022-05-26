@@ -10,13 +10,33 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <style>
+      html {
+        filter: invert(1);
+      }
+      @media (min-width: 1200px) {
+        .container {
+          width: 540px;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .container {
+          width: 540px;
+        }
+      }
+
+      @media (min-width: 540px) {
+        .container {
+          width: 750px;
+        }
+      }
+    </style>
 
     <title>Utkarsh Sharma</title>
-    <style>
-    </style>
   </head>
   <body>
-    <div class="container-sm my-5">
+    <div class="container my-5">
       <h3 class="text-center display-6">
         <a class="nav-link" href="/">Utkarsh Sharma</a>
       </h3>
@@ -28,7 +48,22 @@
           <a class="nav-link text-decoration-underline" href="/about">About</a>
         </li>
       </ul>
-      <div class="my-3 text-black">{{post | safe}}</div>
+      <ul class="list-group list-group-flush my-3">
+        {% for item in data %}
+        <a
+          href="/post/{{item.url}}"
+          class="list-group-item list-group-item-action"
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{item.title}}</h5>
+            <small class="text-muted">{{item.date}}</small>
+          </div>
+          {% for tag in item.tags %}
+          <span class="badge bg-secondary">{{tag}}</span>
+          {% endfor %}
+        </a>
+        {% endfor %}
+      </ul>
     </div>
 
     <script
