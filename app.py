@@ -31,18 +31,21 @@ def index():
 
 @app.route("/post/<slug>", methods=["GET"])
 def post(slug):
-    data = ""
-    with open('static/posts/'+str(slug)+".md", encoding='utf-8') as f:
-        fm_data = frontmatter.load(f)
-        data = markdown(fm_data.content)
-
-    return render_template('post.html', post=data)
+    try:
+        f = open('static/posts/'+str(slug)+".md", encoding='utf-8')
+        with f:
+            fm_data = frontmatter.load(f)
+            data = markdown(fm_data.content)
+            return render_template('post.html', post=data)
+    except:
+        return "no such post exists :("
 
 
 @app.route("/about", methods=["GET"])
 def about():
     about = ""
     with open('static/about/about.md', encoding='utf-8') as f:
+
         fm_data = frontmatter.load(f)
         about = markdown(fm_data.content)
     return render_template('about.html', about=about)
@@ -63,4 +66,7 @@ def tag_posts(tag):
                     "tags": data["tags"]
                 }
                 post_list.append(post)
-    return render_template('index.html', data=post_list)
+    if len(post_list):
+        return render_template('index.html', data=post_list)
+    else:
+        return "No such tag exists yet :("
