@@ -5,10 +5,13 @@ from markdown import markdown
 from dotenv import load_dotenv
 load_dotenv()
 
+
 app = Flask(__name__)
+
 
 @app.route("/", methods=["GET"])
 def index():
+
     posts_list = []
     for item in os.listdir('static/posts'):
         with open("./static/posts/"+item, encoding='utf-8') as f:
@@ -61,5 +64,3 @@ def tag_posts(tag):
                 }
                 post_list.append(post)
     return render_template('index.html', data=post_list)
-
-

@@ -2,5 +2,6 @@
 
 > ###  Backend written in python
 > ### Markdown files with front matter used as blog post
-> ### Hosted on Azure web apps with github actions enabled
+> ### Github actions enabled for CI/CD
+
 
