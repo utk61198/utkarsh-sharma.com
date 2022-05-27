@@ -9,7 +9,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-deta = Deta('c0blgm2m_TJ27PXwshU7hSTZp3sNP6jVsrw1WKd6R')
+deta = Deta(os.environ.get('DETA_KEY'))
 blog_visited_tracker = deta.Base('blog_visited_tracker')
 
 
